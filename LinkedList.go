@@ -79,3 +79,22 @@ func (list *LinkedList) Traverse(f func(int)) {
 		node = node.Next
 	}
 }
+
+func (list *LinkedList) Search(value int) int {
+	i := 0
+	node := list.Head
+
+	for node != nil {
+		// We assume the list is sorted.
+		if node.Value > value {
+			break
+		} else if node.Value == value {
+			return i
+		}
+
+		node = node.Next
+		i++
+	}
+
+	return -1
+}

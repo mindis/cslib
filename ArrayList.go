@@ -44,3 +44,25 @@ func (list *ArrayList) Traverse(f func(int)) {
 		f(list.Data[i])
 	}
 }
+
+func (list *ArrayList) Search(value int) int {
+	// Exported version of search function.
+	return list.search(value, 0, list.Length())
+}
+
+func (list *ArrayList) search(value, start, end int) int {
+	// Internal version of search -- requires bounding indexes.
+	if end-start < 1 {
+		return -1
+	}
+
+	middleIndex := start + ((end - start) / 2)
+	middleValue := list.Get(middleIndex)
+	if middleValue == value {
+		return middleIndex
+	} else if middleValue < value {
+		return list.search(value, middleIndex+1, end)
+	} else {
+		return list.search(value, start, middleIndex)
+	}
+}

@@ -8,4 +8,5 @@ type List interface {
 	Remove(index int)
 	Length() int
 	Traverse(func(int))
+	Search(value int) int
 }
