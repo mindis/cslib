@@ -73,28 +73,20 @@ func (list *LinkedList) Length() int {
 }
 
 func (list *LinkedList) Traverse(f func(int)) {
-	node := list.Head
-	for node != nil {
+	for node := list.Head; node != nil; node = node.Next {
 		f(node.Value)
-		node = node.Next
 	}
 }
 
-func (list *LinkedList) Search(value int) int {
-	i := 0
-	node := list.Head
-
-	for node != nil {
+func (list *LinkedList) Search(value int) *Node {
+	for node := list.Head; node != nil; node = node.Next {
 		// We assume the list is sorted.
 		if node.Value > value {
 			break
 		} else if node.Value == value {
-			return i
+			return node
 		}
-
-		node = node.Next
-		i++
 	}
 
-	return -1
+	return nil
 }
