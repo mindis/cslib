@@ -1,19 +1,19 @@
 package cslib
 
-type Node struct {
-	Previous *Node
-	Next     *Node
+type LinkedListNode struct {
+	Previous *LinkedListNode
+	Next     *LinkedListNode
 	Value    int
 }
 
 type LinkedList struct {
-	Head *Node
-	Tail *Node
+	Head *LinkedListNode
+	Tail *LinkedListNode
 	Len  int
 }
 
 func (list *LinkedList) Append(value int) {
-	node := &Node{Value: value}
+	node := &LinkedListNode{Value: value}
 
 	if list.Head == nil {
 		list.Head = node
@@ -78,7 +78,7 @@ func (list *LinkedList) Traverse(f func(int)) {
 	}
 }
 
-func (list *LinkedList) Search(value int) *Node {
+func (list *LinkedList) Search(value int) *LinkedListNode {
 	for node := list.Head; node != nil; node = node.Next {
 		// We assume the list is sorted.
 		if node.Value > value {
