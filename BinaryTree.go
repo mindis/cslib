@@ -54,3 +54,19 @@ func (tree *BinaryTree) Search(value int) *BinaryTreeNode {
 	}
 	return current
 }
+
+func (tree *BinaryTree) Traverse(f func(int)) {
+	if tree.Root != nil {
+		tree.Root.traverse(f)
+	}
+}
+
+func (node *BinaryTreeNode) traverse(f func(int)) {
+	if node.Left != nil {
+		node.Left.traverse(f)
+	}
+	f(node.Value)
+	if node.Right != nil {
+		node.Right.traverse(f)
+	}
+}
